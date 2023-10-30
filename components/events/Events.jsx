@@ -4,36 +4,43 @@ const Events = () => {
   const data = [
     {
       id: 1,
+      title:"Vande Gujarat Event",
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
     },
     {
       id: 2,
+      title:" Google Webinar",
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
     },
+  
     {
       id: 3,
+      title:"Hack-holick Event",
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
     },
     {
       id: 4,
+      title:"First Event",
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
     },
     {
       id: 5,
+      title:"First Event",
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
     },
     {
       id: 6,
+      title:"First Event",
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
@@ -52,7 +59,7 @@ const Events = () => {
             className="flex flex-col  text-start p-4 border-gray-300 border   py-4  gap-3 m-4 shadow-2xl rounded-sm ">
             <img src="ev.png" alt="" />
             <h2 className="text-black font-semibold">
-              Once Director: Where We Are
+              {item.title}
             </h2>
             <h4 className="text-base font-medium">{item.location}</h4>
             <h5>{item.date}</h5>

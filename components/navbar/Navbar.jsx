@@ -28,7 +28,7 @@ const Navbar = () => {
 
       <div >
         {/* <Image className=' ' src="logo.png" alt='' width={50} height={50}/> */}
-        <img src="logo.png" className='' width={50} height={50} alt="" />
+        <img src="https://www.giftgujarat.in/assets/common/vectors/logo-dark.svg" className='' width={50} height={50} alt="" />
       </div>
       <div className=' flex justify-evenly  gap-x-5 ml-auto '>
 
