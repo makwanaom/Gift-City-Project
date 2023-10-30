@@ -1,9 +1,72 @@
-import React from 'react'
+import React from "react";
 
 const Events = () => {
-  return (
-    <div id='Events'>Events</div>
-  )
-}
+  const data = [
+    {
+      id: 1,
+      location: "Gujarat, India",
+      date: "Oct 29 2023",
+      price: "IDR800.000",
+    },
+    {
+      id: 2,
+      location: "Gujarat, India",
+      date: "Oct 29 2023",
+      price: "IDR800.000",
+    },
+    {
+      id: 3,
+      location: "Gujarat, India",
+      date: "Oct 29 2023",
+      price: "IDR800.000",
+    },
+    {
+      id: 4,
+      location: "Gujarat, India",
+      date: "Oct 29 2023",
+      price: "IDR800.000",
+    },
+    {
+      id: 5,
+      location: "Gujarat, India",
+      date: "Oct 29 2023",
+      price: "IDR800.000",
+    },
+    {
+      id: 6,
+      location: "Gujarat, India",
+      date: "Oct 29 2023",
+      price: "IDR800.000",
+    },
 
-export default Events
+    // Add more data items as needed
+  ];
+  return (
+    <div id="Events">
+      <div className="text-2xl font-medium py-4 underline ">Events</div>
+
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-4 ">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col  text-start p-4 border-gray-300 border   py-4  gap-3 m-4 shadow-2xl rounded-sm ">
+            <img src="ev.png" alt="" />
+            <h2 className="text-black font-semibold">
+              Once Director: Where We Are
+            </h2>
+            <h4 className="text-base font-medium">{item.location}</h4>
+            <h5>{item.date}</h5>
+            <div className="mt-6 flex items-center justify-between gap-20">
+              <p className="text-red-800 text-xs">{item.price}</p>
+              <button className="bg-black rounded-md text-white px-8 py-3">
+                Know More
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Events;
