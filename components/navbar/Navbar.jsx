@@ -5,23 +5,34 @@ import Link from 'next/link'
 import Events from '../events/Events'
 import AboutUs from '@/app/AboutUs/page'
 import { useState } from 'react'
+import Home from '@/app/page'
 
 const Navbar = () => {
+  const menus=[
+   { label:"Home" ,value: "/"},
+    {label:"AboutUS" ,value: "/AboutUs"},
+   { label:"Events" ,value: "/Events"},
+ {   label:"Community" ,value: "/Community"},
+   { label:"Maps" ,value: "/#"},
+    
+  ]
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currTab,setCurrTab]=useState("Home")
 
   const toggleLoginStatus = () => {
     setIsLoggedIn(!isLoggedIn);
   };
   return (
-    <nav className=' flex  p-4 '>
+    <nav className=' flex py-4 px-6 items-center '>
 
       <div >
-        <Image className=' ' src={"https://www.giftgujarat.in/assets/common/vectors/logo-dark.svg"} width={50} height={50}/>
+        {/* <Image className=' ' src="logo.png" alt='' width={50} height={50}/> */}
+        <img src="logo.png" className='' width={50} height={50} alt="" />
       </div>
-      <div className=' flex justify-evenly  gap-x-5 ml-auto '>
+      <div className=' flex items-center justify-between  font-medium text-lg  gap-12 ml-auto  '>
 
-          <Link href="/">
+          {/* <Link href="/">
               Home
           </Link>
           <Link href="/AboutUs">
@@ -35,9 +46,20 @@ const Navbar = () => {
           </Link>
           <Link href="/#">
               Map
+          </Link> */}
+          {menus.map((item,index)=>(
+          <Link 
+          href={item.value}
+          key={index}
+          className={`${currTab ==item.label ?"border-b-2  border-gray-600" : "" }`}
+          onClick={()=>setCurrTab(item.label)}
+          >
+            {item.label}
           </Link>
+
+          ))}
           </div>
-          <div className=' ml-16'>
+          <div className=' ml-16 font-medium text-lg cursor-pointer text-black'>
           {/* Add more links as needed */}
           <button onClick={!isLoggedIn ? toggleLoginStatus : null}>
             {isLoggedIn ? (
