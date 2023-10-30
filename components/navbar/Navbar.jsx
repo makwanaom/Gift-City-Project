@@ -14,12 +14,22 @@ const Navbar = () => {
     setIsLoggedIn(!isLoggedIn);
   };
   return (
-    <nav className=' flex  p-4 '>
+    <nav className=' flex p-4 '>
 
       <div >
         <Image className=' ' src={"https://www.giftgujarat.in/assets/common/vectors/logo-dark.svg"} width={50} height={50}/>
       </div>
-      <div className=' flex justify-evenly  gap-x-5 ml-auto '>
+
+      <div class="sm:hidden ml-auto">
+			<button class="navbar-burger flex items-center text-blue-600 p-3">
+				<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<title>Mobile menu</title>
+					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+				</svg>
+			</button>
+		</div>
+
+      <div className=' flex justify-evenly  gap-x-5 ml-auto  '>
 
           <Link href="/">
               Home
