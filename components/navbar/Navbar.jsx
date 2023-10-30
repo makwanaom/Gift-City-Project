@@ -11,7 +11,7 @@ const Navbar = () => {
   const menus=[
    { label:"Home" ,value: "/"},
     {label:"AboutUS" ,value: "/AboutUs"},
-   { label:"Events" ,value: "/Events"},
+   { label:"Events" ,value: "/#Events"},
  {   label:"Community" ,value: "/Community"},
    { label:"Maps" ,value: "/#"},
     
