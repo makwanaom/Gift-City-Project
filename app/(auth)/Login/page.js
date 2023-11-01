@@ -1,17 +1,21 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 const Login = () => {
   return (
     <div>
        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <Image
+          <Link href="/">
+           <Image
             className="mx-auto "
             src="https://www.giftgujarat.in/assets/common/vectors/logo-dark.svg"
+            
             alt="Your Company"
             width={100}
             height={100}
           />
+          </Link>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>

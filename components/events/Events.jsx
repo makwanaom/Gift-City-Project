@@ -8,6 +8,8 @@ const Events = () => {
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
+      img: "https://www.giftgujarat.in/assets/updates/1.webp",
+      description: ""
     },
     {
       id: 2,
@@ -15,6 +17,8 @@ const Events = () => {
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
+      img: "https://www.giftgujarat.in/assets/updates/1.webp",
+      description: ""
     },
   
     {
@@ -23,6 +27,7 @@ const Events = () => {
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
+      img: "https://www.giftgujarat.in/assets/updates/1.webp"
     },
     {
       id: 4,
@@ -30,6 +35,8 @@ const Events = () => {
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
+      img: "https://www.giftgujarat.in/assets/updates/1.webp",
+      description: ""
     },
     {
       id: 5,
@@ -37,6 +44,8 @@ const Events = () => {
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
+      img: "https://www.giftgujarat.in/assets/updates/1.webp",
+      description: ""
     },
     {
       id: 6,
@@ -44,6 +53,8 @@ const Events = () => {
       location: "Gujarat, India",
       date: "Oct 29 2023",
       price: "IDR800.000",
+      img: "https://www.giftgujarat.in/assets/updates/1.webp",
+      description: ""
     },
 
     // Add more data items as needed
@@ -57,7 +68,7 @@ const Events = () => {
           <div
             key={index}
             className="flex flex-col  text-start p-4 border-gray-300 border   py-4  gap-3 m-4 shadow-2xl rounded-sm ">
-            <img src="ev.png" alt="" />
+            <img src={item.img} alt="" />
             <h2 className="text-black font-semibold">
               {item.title}
             </h2>
