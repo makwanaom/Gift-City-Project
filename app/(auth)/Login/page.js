@@ -2,10 +2,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useState } from "react";
 const Login = () => {
   const [email, setEmail] = useState("");
-
+         
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -41,8 +41,8 @@ const SignUp = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
-      });                                                                     
-                                                                  
+      });
+
       const { user } = await resUserExists.json();
 
       if (user) {
@@ -91,7 +91,7 @@ const SignUp = () => {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" onSubmit={handleSubmit}  >
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
