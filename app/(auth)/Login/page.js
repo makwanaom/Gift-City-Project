@@ -4,8 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 const Login = () => {
   const [email, setEmail] = useState("");
+  const router = useRouter();
          
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
@@ -24,7 +27,7 @@ const Login = () => {
         setError("Invalid  Credentials!");
         return;
       }
-      router.replace("/Home");
+      router.replace("/");
     } catch (error) {
       console.log("message is :", error);
     }
