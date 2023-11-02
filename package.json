@@ -11,7 +11,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
     "mongodb": "^6.2.0",
+    "mongoose": "^8.0.0",
     "mongose": "^0.0.2-security",
     "next": "13.5.6",
     "next-auth": "^4.24.4",
@@ -22,8 +25,10 @@
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
+    "@types/react": "18.2.34",
     "autoprefixer": "^10",
     "postcss": "^8",
-    "tailwindcss": "^3"
+    "tailwindcss": "^3",
+    "typescript": "5.2.2"
   }
 }

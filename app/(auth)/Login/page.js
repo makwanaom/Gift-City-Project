@@ -1,7 +1,17 @@
+'use client'
 import React from 'react'
+import { useState } from 'react';
+import { signIn } from "next-auth/react";
 import Image from 'next/image'
+import { useRouter } from "next/navigation";
 import Link from 'next/link'
+
+
+
+
 const Login = () => {
+  const router = useRouter();
+  const { data: session } = useSession();
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
@@ -21,7 +31,7 @@ const Login = () => {
         setError("Invalid  Credentials!");
         return;
       }
-      router.replace("/Home");
+      router.replace("/");
     } catch (error) {
       console.log("message is :", error);
     }
@@ -47,7 +57,7 @@ const Login = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
