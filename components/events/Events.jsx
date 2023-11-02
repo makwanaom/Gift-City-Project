@@ -1,6 +1,10 @@
-import React from "react";
+"use client"
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 const Events = () => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   const data = [
     {
       id: 1,
@@ -9,7 +13,7 @@ const Events = () => {
       date: "Oct 29 2023",
       price: "IDR800.000",
       img: "https://www.giftgujarat.in/assets/updates/1.webp",
-      description: ""
+      description: "hello there A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs."
     },
     {
       id: 2,
@@ -56,33 +60,79 @@ const Events = () => {
       img: "https://www.giftgujarat.in/assets/updates/1.webp",
       description: ""
     },
-
     // Add more data items as needed
   ];
+
+  const handleKnowMoreClick = (event) => {
+    setSelectedEvent(event);
+
+  };
+
   return (
     <div id="Events">
-      <div className="text-2xl font-medium py-4 underline ">Events</div>
+      <div className="text-2xl font-medium py-4 underline">Events</div>
 
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-4 ">
-        {data.map((item, index) => (
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-4">
+        {data.map((event) => (
           <div
-            key={index}
-            className="flex flex-col  text-start p-4 border-gray-300 border   py-4  gap-3 m-4 shadow-2xl rounded-sm ">
-            <img src={item.img} alt="" />
-            <h2 className="text-black font-semibold">
-              {item.title}
-            </h2>
-            <h4 className="text-base font-medium">{item.location}</h4>
-            <h5>{item.date}</h5>
+            key={event.id}
+            className="flex flex-col text-start p-4 border-gray-300 border py-4 gap-3 m-4 shadow-2xl rounded-sm"
+          >
+            <img src={event.img} alt={event.title} />
+            <h2 className="text-black font-semibold">{event.title}</h2>
+            <h4 className="text-base font-medium">{event.location}</h4>
+            <h5>{event.date}</h5>
             <div className="mt-6 flex items-center justify-between gap-20">
-              <p className="text-red-800 text-xs">{item.price}</p>
-              <button className="bg-black rounded-md text-white px-8 py-3">
+              <p className="text-red-800 text-xs">{event.price}</p>
+              <button
+                className="bg-black rounded-md text-white px-8 py-3"
+                onClick={() => handleKnowMoreClick(event)}
+              >
                 Know More
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {selectedEvent && (
+        <div className="fixed  inset-0 flex items-center justify-center  z-50 overflow-y-auto">
+          <div className="modal-background absolute  bg-black opacity-40 inset-0 "></div>
+          <div className="modal-container absolute bg-white w-4/5 md:w-1/2 mx-auto rounded-md shadow-lg ">
+            <div className="modal-content p-6">
+              <h2 className="text-3xl font-semibold mb-4">{selectedEvent.title}</h2>
+              <img
+                src={selectedEvent.img}
+                alt={selectedEvent.title}
+                className="my-4 h-60 w-full object-cover rounded-md"
+              />
+              <p className="text-base text-gray-600">{selectedEvent.location}</p>
+              <p className="text-base text-gray-600">{selectedEvent.date}</p>
+              <p className="text-base text-gray-600">{selectedEvent.price}</p>
+              <p className="text-base text-black"><span>Description : <br/></span>{selectedEvent.description}</p>
+            
+              {/* Add more event details here as needed */}
+              <div className=" flex gap-x-3">
+              <button
+                onClick={() => setSelectedEvent(null)}
+                className="bg-gray-400 m-3 text-white px-4 py-2 rounded-md hover:bg-gray-500"
+              >
+                Close
+              </button>
+              <button
+                className="bg-blue-500 m-3 ml-auto text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                onClick={() => {
+                  // Handle RSVP functionality here
+                  setSelectedEvent(null);
+                }}
+              >
+                RSVP
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
