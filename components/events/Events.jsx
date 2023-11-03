@@ -122,6 +122,7 @@ const Events = () => {
               <button
                 className="bg-blue-500 m-3 ml-auto text-white px-4 py-2 rounded-md hover:bg-blue-600"
                 onClick={() => {
+                  
                   // Handle RSVP functionality here
                   setSelectedEvent(null);
                 }}

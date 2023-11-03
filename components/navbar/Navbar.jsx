@@ -50,7 +50,7 @@ const Navbar = () => {
         </button>
       </div>
       {/* Desktop navigation */}
-      <div className="hidden sm:flex justify-evenly gap-x-5 ml-auto">
+      <div className="hidden sm:flex justify-evenly text-lg font-medium gap-x-12 ml-auto">
         {menus.map((item, index) => (
           <Link
             href={item.value}
@@ -84,7 +84,7 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div className="ml-4 font-medium text-lg cursor-pointer text-black">
+      <div className="ml-4 font-medium text-xl px-6 cursor-pointer text-black">
         {isLoggedIn ? (
           <button onClick={toggleProfileMenu}>
             <FaUser />
