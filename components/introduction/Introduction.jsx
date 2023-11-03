@@ -12,11 +12,11 @@ import Banner from "../Banner/Banner";
 
 const Introduction = () => {
   return (
-    <div className=" animate__animated animate__fadeIn h-fit flex flex-col mt-3 ">
+    <div className=" animate__animated animate__fadeIn h-fit flex flex-col mt-3 z-1">
      {/* <NextNProgress color='#29D ' startPosition={0.3}
         stopDelayMs={200}
         height={3} /> */}
-<div className="relative" style={{ paddingBottom: '56.25%' }}>
+<div className="relative z-1" style={{ paddingBottom: '56.25%' }}>
   <video
     autoPlay
     loop

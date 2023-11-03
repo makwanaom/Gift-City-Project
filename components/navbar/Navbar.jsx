@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaBars, FaUser } from "react-icons/fa"; // Import the menu icon from react-icons/fa
 import { useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
+import UserInfo from "../UserData/UserInfo";
 
 const Navbar = () => {
   
@@ -84,7 +85,7 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div className="ml-4 font-medium text-xl px-6 cursor-pointer text-black">
+      <div className="ml-4  font-medium text-xl px-6 cursor-pointer text-black">
         {session ? (
           <button onClick={toggleProfileMenu}>
             <FaUser />
@@ -95,15 +96,17 @@ const Navbar = () => {
           </button>
         )}
         {isProfileMenuOpen && (
-          <ul className="bg-white p-2 border-b-2 border-gray-600 absolute right-0 mt-2">
-            <li>
+          <ul className="bg-white p-2 border-b-2 border-gray-600 absolute z-10 right-0 mt-2 ">
+            <UserInfo/>
+            
+             <li>
               <Link href="/Profile">Profile</Link>
             </li>
             <li onClick={toggleProfileMenu}>
               <Link onClick={toggleLoginStatus} href="/">
                 Logout
               </Link>
-            </li>
+            </li> 
           </ul>
         )}
       </div>
