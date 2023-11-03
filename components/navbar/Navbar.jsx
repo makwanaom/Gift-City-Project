@@ -31,8 +31,8 @@ const Navbar = () => {
 
 
   return (
-    <nav className="flex py-4 px-6  items-center">
-      <div>
+    <nav className="flex py-4 px-6 Gujarat International Finance tech-city items-center">
+      <div className=' bg'>
         <img
           src="https://www.giftgujarat.in/assets/common/vectors/logo-dark.svg"
           className=""
@@ -73,7 +73,8 @@ const Navbar = () => {
             <Link
               href={item.value}
               key={index}
-              className="block py-2 text-gray-600"
+              className="block py-2  scroll-smooth text-gray-600"
+              scroll 
               onClick={() => {
                 setMobileMenuOpen(false);
                 setCurrTab(item.label);
