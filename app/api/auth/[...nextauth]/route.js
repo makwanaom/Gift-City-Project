@@ -48,32 +48,63 @@ export const authOptions = {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
-      async authorize(credentials) {
-        console.log("We are here just");
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error("Invalid Credentials");
-        }
-        await MongodbConnection();
-        const user = await User.find({
-          email: credentials.email,
-        });console.log(user[0])
+      // async authorize(credentials) {
+      //   console.log("We are here just");
+      //   if (!credentials?.email || !credentials?.password) {
+      //     throw new Error("Invalid Credentials");
+      //   }
+      //   await MongodbConnection();
 
-        if (!user || !user[0]?.password) {
-          throw new Error("Invalid Credentials");
-        }
-        const isCorrectPassword = await bcrypt.compare(
-          credentials.password,
-          user[0].password
-        );
-        if (!isCorrectPassword) {
-          console.log()
-          throw new Error("Invalid Credentials");
-        }
-        console.log(user)
+      //   const user = await User.find({
+      //     email: credentials.email,
+      //   })
+         
 
+      //   if (!user || !user[0]?.password) {
+      //     throw new Error("Invalid Credentials");
+      //   }
+      //   const isCorrectPassword = await bcrypt.compare(
+      //     credentials.password,
+      //     user[0].password
+      //   );
+      //   if (!isCorrectPassword) {
+      //     console.log()
+      //     throw new Error("Invalid Credentials");
+      //   }
+        
+      //   console.log('user is a :',user)
  
-        return user;
-      },
+      //   return user;
+      // },
+      async authorize(credentials) {
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            throw new Error("Invalid Credentials");
+          }
+      
+          await MongodbConnection();
+      
+          const user = await User.findOne({ email: credentials.email });
+      
+          if (!user) {
+            throw new Error("User not found"),
+            console.log("hey there this is error");
+          }
+      
+          const isCorrectPassword = await bcrypt.compare(credentials.password, user.password);
+      
+          if (!isCorrectPassword) {
+            throw new Error("Incorrect password");
+          }
+      
+          console.log('User found:', user);
+          
+          return user;
+        } catch (error) {
+          console.error('Authorization error:', error);
+          return null; // Return null on error
+        }
+      }
     }),
   ],
    
@@ -82,6 +113,7 @@ export const authOptions = {
 
     maxAge: 30 * 24 * 60 * 60, // ** 30 days
   },
+  
 
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
