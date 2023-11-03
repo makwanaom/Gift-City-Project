@@ -26,7 +26,8 @@ const Introduction = () => {
     <source src="https://assets.giftgujarat.in/vidoes/opportunities/IFSC-office.mp4" />
   </video>
   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl">
-  Gujarat International Finance tech-city
+  Gujarat International Finance tech-city Gandhinagar <br/>
+  A Global Financial Hub
   </div>
 </div>
         <div className=" m-9 mt-4 sm:flex ">
