@@ -69,6 +69,7 @@ export const authOptions = {
           console.log()
           throw new Error("Invalid Credentials");
         }
+        console.log(user)
 
  
         return user;
@@ -82,15 +83,6 @@ export const authOptions = {
     maxAge: 30 * 24 * 60 * 60, // ** 30 days
   },
 
-  callbacks: {
-    async session({session}) {
-      
-      
-      const data = await User.find({ email: session?.user?.email });
-      session.user = data.userData;
-      return Promise.resolve(session);
-    },
-  },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/",
