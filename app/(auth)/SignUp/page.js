@@ -26,11 +26,11 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSignUp) {
-      if (!email || !password) {
+      if (!username ||!email || !password) {
         setError("All fields are necessary.");
         return;
       }
-    } else if (!email || !password) {
+    } else if (!username || !email || !password) {
       setError("All fields are necessary.");
     }
 
@@ -56,6 +56,7 @@ const SignUp = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          username,
           email,
           password,
           confirmPassword,
@@ -90,8 +91,27 @@ const SignUp = () => {
             </h2>
           </div>
 
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mt-10 items-center sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900">
+                  Username
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="username"
+                    name="username"
+                    type="username"
+                    autoComplete="username"
+                    value={username}
+                    onChange={(e) => setUserName(e.target.value)}
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
               <div>
                 <label
                   htmlFor="email"
@@ -155,6 +175,12 @@ const SignUp = () => {
                   />
                 </div>
               </div>
+                    {setError?<div>
+                      <span>
+                        {setError}
+                      </span>
+                    </div>:<></>}
+             
 
               <div>
                 <button

@@ -29,8 +29,10 @@
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
+    "@types/react": "18.2.34",
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3"
+ 
   }
 }
