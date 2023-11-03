@@ -1,23 +1,25 @@
-"use client"
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { FaBars , FaUser } from 'react-icons/fa'; // Import the menu icon from react-icons/fa
-
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { FaBars, FaUser } from "react-icons/fa"; // Import the menu icon from react-icons/fa
+import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
 const Navbar = () => {
+  
   const menus = [
-    { label: 'Home', value: '/' },
-    { label: 'About Us', value: '/AboutUs' },
-    { label: 'Events', value: '/#Events' },
-    { label: 'Community', value: '/Community' },
-    { label: 'Maps', value: '/#' },
+    { label: "Home", value: "/" },
+    { label: "About Us", value: "/AboutUs" },
+    { label: "Events", value: "/#Events" },
+    { label: "Community", value: "/Community" },
+    { label: "Maps", value: "/#" },
   ];
-
+  const {data}=useSession();
+  console.log("user",data)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currTab, setCurrTab] = useState('Home');
+  const [currTab, setCurrTab] = useState("Home");
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
-
 
   const toggleLoginStatus = () => {
     setIsLoggedIn(!isLoggedIn);
@@ -25,6 +27,8 @@ const Navbar = () => {
   const toggleProfileMenu = () => {
     setProfileMenuOpen(!isProfileMenuOpen);
   };
+
+
 
   return (
     <nav className="flex py-4 px-6  items-center">
@@ -41,9 +45,8 @@ const Navbar = () => {
       <div className="ml-auto block sm:hidden">
         <button
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-          className="text-gray-600 focus:outline-none"
-        >
-         <FaBars />
+          className="text-gray-600 focus:outline-none">
+          <FaBars />
         </button>
       </div>
       {/* Desktop navigation */}
@@ -52,15 +55,19 @@ const Navbar = () => {
           <Link
             href={item.value}
             key={index}
-            className={`${currTab === item.label ? 'border-b-2 border-gray-600' : ''}`}
-            onClick={() => setCurrTab(item.label)}
-          >
+            className={`${
+              currTab === item.label ? "border-b-2 border-gray-600" : ""
+            }`}
+            onClick={() => setCurrTab(item.label)}>
             {item.label}
           </Link>
         ))}
       </div>
       {/* Mobile menu */}
-      <div className={`ml-auto sm:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+      <div
+        className={`ml-auto sm:hidden ${
+          isMobileMenuOpen ? "block" : "hidden"
+        }`}>
         <div className="absolute top-16 right-0 left-0 bg-white p-4 border-b-2 border-gray-600">
           {menus.map((item, index) => (
             <Link
@@ -70,8 +77,7 @@ const Navbar = () => {
               onClick={() => {
                 setMobileMenuOpen(false);
                 setCurrTab(item.label);
-              }}
-            >
+              }}>
               {item.label}
             </Link>
           ))}
@@ -92,8 +98,10 @@ const Navbar = () => {
             <li>
               <Link href="/Profile">Profile</Link>
             </li>
-            <li onClick={ toggleProfileMenu }>
-              <Link onClick={toggleLoginStatus } href="/">Logout</Link>
+            <li onClick={toggleProfileMenu}>
+              <Link onClick={toggleLoginStatus} href="/">
+                Logout
+              </Link>
             </li>
           </ul>
         )}

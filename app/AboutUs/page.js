@@ -1,8 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
+import UserInfo from '@/components/UserData/UserInfo'
 const AboutUs = () => {
   return (
+
     <div className="px-5">
+      <UserInfo/>
     
       <div className=" flex max-md:flex-col max-md:items-stretch max-md:gap-0 sm:m-8">
       <p className="text-3xl font-medium py-4 underline ">Events</p>
