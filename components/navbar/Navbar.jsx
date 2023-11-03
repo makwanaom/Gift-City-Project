@@ -14,9 +14,8 @@ const Navbar = () => {
     { label: "Community", value: "/Community" },
     { label: "Maps", value: "/#" },
   ];
-  const {data}=useSession();
-  console.log("user",data)
-  console.log(data?.user?.email)
+  const {data:session}=useSession();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currTab, setCurrTab] = useState("Home");
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -86,7 +85,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="ml-4 font-medium text-xl px-6 cursor-pointer text-black">
-        {isLoggedIn ? (
+        {session ? (
           <button onClick={toggleProfileMenu}>
             <FaUser />
           </button>
