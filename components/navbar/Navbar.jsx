@@ -16,6 +16,7 @@ const Navbar = () => {
   ];
   const {data}=useSession();
   console.log("user",data)
+  console.log(data?.user?.email)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currTab, setCurrTab] = useState("Home");
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
