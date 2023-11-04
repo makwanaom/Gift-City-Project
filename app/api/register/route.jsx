@@ -5,11 +5,12 @@ import bcrypt from "bcryptjs";
 
 export async function POST(req) {
   try {
-    const { email,password } = await req.json();
+    const { username,email,password } = await req.json();
     const hashPassword = await bcrypt.hash(password, 10);
 
     await MongodbConnection();
-    await User.create({ email, password: hashPassword });
+    
+    await User.create({ username, email, password: hashPassword , });
     return NextResponse.json({ message: "User registered" }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
