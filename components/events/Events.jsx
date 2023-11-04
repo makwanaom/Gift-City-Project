@@ -1,6 +1,7 @@
 "use client"
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import axios from "axios";
 
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -70,14 +71,54 @@ const Events = () => {
     },
     // Add more data items as needed
   ];
-
+ 
   const handleKnowMoreClick = (event) => {
     setSelectedEvent(event);
 
   };
- const handleCreateEventClick = () => {
+  const handleCreateEventClick = () => {
     setCreateFormVisible(true);
   };
+  
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('/api/EventCreate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEvent),
+      });
+
+      if (response.status === 201) {
+        console.log('Event created successfully');
+      } else {
+        console.error('Failed to create the event');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+   
+  // Create Event API function
+  // const createEventAPI = async (newEvent) => {
+  //   console.log("dasta is ",newEvent);
+  //   try {
+  //     const response = await axios.post("/api/EventCreate", newEvent); // Adjust the URL accordingly
+  //     if (response.status === 201) {
+  //       // Event created successfully, you can update your data or take other actions
+  //       const newEvent = response.data;
+  //       data.push(newEvent);
+  //       setSelectedEvent(null);
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to create the event:", error);
+  //   }
+  // };
+
 
   const handleFormChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -97,11 +138,13 @@ const Events = () => {
       location: formData.location,
       date: formData.date,
       price: formData.price,
-      img: URL.createObjectURL(formData.image), // Display uploaded image
+      // img: URL.createObjectURL(formData.image), // Display uploaded image
       description: formData.description,
     };
+    console.log("new event form is :",newEvent)
 
     data.push(newEvent);
+    createEventAPI(newEvent);
 
     // Reset form and close it
     setFormData({
@@ -165,6 +208,7 @@ const Events = () => {
       </div>
 
       {selectedEvent && (
+        
         <div className="fixed  inset-0 flex items-center justify-center  z-50 overflow-y-auto">
           <div className="modal-background absolute  bg-black opacity-40 inset-0 "></div>
           <div className="modal-container absolute bg-white w-4/5 md:w-1/2 mx-auto rounded-md shadow-lg ">
@@ -204,10 +248,13 @@ const Events = () => {
         </div>
       )}
 {createFormVisible && (
+  
   <div className="fixed inset-0 flex items-center justify-center z-50">
     <div className="modal-background absolute bg-black opacity-40 inset-0"></div>
     <div className="modal-container absolute bg-white w-4/5 md:w-1/2 mx-auto rounded-md shadow-lg">
+      <form onSubmit={handleFormSubmit} >
       <div className="modal-content p-6">
+        <form onSubmit={handleCreateEvent}>
         <h2 className="text-3xl font-semibold mb-4">Create Event</h2>
         <input
           type="text"
@@ -262,13 +309,17 @@ const Events = () => {
             Close
           </button>
           <button
-            onClick={handleCreateEvent}
+            onClick={handleFormSubmit}
+            type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
           >
             Create Event
           </button>
+          
         </div>
+        </form>
       </div>
+      </form>
     </div>
   </div>
 )}
