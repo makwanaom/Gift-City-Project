@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-const Events = () => {
+const Events =  () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [createFormVisible, setCreateFormVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -13,6 +13,11 @@ const Events = () => {
     description: "",
     image: null, // To store the selected image file
   });
+
+  
+  
+
+
   const data = [
     {
       id: 1,
@@ -89,7 +94,7 @@ const Events = () => {
     }
   };
 
-  const handleCreateEvent = () => {
+  const handleCreateEvent  = async  (e) => {
     // Handle event creation here
     const newEvent = {
       id: data.length + 1,
@@ -97,7 +102,7 @@ const Events = () => {
       location: formData.location,
       date: formData.date,
       price: formData.price,
-      img: URL.createObjectURL(formData.image), // Display uploaded image
+      // img: URL.createObjectURL(formData.image), // Display uploaded image
       description: formData.description,
     };
 
@@ -113,6 +118,14 @@ const Events = () => {
       image: null,
     });
     setCreateFormVisible(false);
+    const Event = await fetch("api/EventCreate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formData }),
+    });
+  
   };
 
   
@@ -131,6 +144,7 @@ const Events = () => {
   return (
     <div id="Events">
       <div className="flex gap-x-3 ">
+        
       <div className="text-2xl font-medium py-4 underline">Events</div>
       <div className="ml-auto  m-6">
       <button
