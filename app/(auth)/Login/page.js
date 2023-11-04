@@ -9,13 +9,14 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const [email, setEmail] = useState("");
   const router = useRouter();
-
+  const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
       setError("All fields are necessary.");
+      alert("All filed are necessury")
     }
     try {
       const res = await signIn("credentials", {
@@ -25,6 +26,7 @@ const Login = () => {
       });
       if (res?.error) {
         setError("Invalid  Credentials!");
+        alert("Invalid  Credentials!")
         return;
       }
       router.replace("/");
@@ -102,7 +104,11 @@ const Login = () => {
                 />
               </div>
             </div>
-
+            {/* {setError?<div className="bg-red-500 rounded-md text-white p-2">
+                      <span className="" >
+                        {error} 
+                      </span>
+                    </div>:<></>} */}
             <div>
               <button
                 type="submit"

@@ -72,7 +72,7 @@ export default function RecipeReviewCard() {
               <CardMedia
                 component="img"
                 height="194"
-                image="https://th.bing.com/th?id=OIF.%2fsgLw5xYMwJtX1c0FPelDg&pid=ImgDet&rs=1"
+                image="https://cdn.dnaindia.com/sites/default/files/styles/full/public/2017/01/10/536948-gift-city-pti-010917.jpg"
                 alt="Paella dish"
               />
               <CardContent>
@@ -143,7 +143,7 @@ export default function RecipeReviewCard() {
               <CardMedia
                 component="img"
                 height="194"
-                image="https://th.bing.com/th?id=OIF.%2fsgLw5xYMwJtX1c0FPelDg&pid=ImgDet&rs=1"
+                image="https://cdn.dnaindia.com/sites/default/files/styles/full/public/2017/01/10/536948-gift-city-pti-010917.jpg"
                 alt="Paella dish"
               />
               <CardContent>
