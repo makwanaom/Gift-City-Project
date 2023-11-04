@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.16",
     "@mui/styled-engine-sc": "^6.0.0-alpha.4",
+    "@mui/styles": "^5.14.16",
     "@nextui-org/react": "^2.1.13",
     "animate.css": "^4.1.1",
     "bcryptjs": "^2.4.3",
