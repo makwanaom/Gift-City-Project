@@ -309,11 +309,8 @@ const Events = () => {
             Close
           </button>
           <button
-<<<<<<< HEAD
             onClick={handleFormSubmit}
-=======
             type="submit"
->>>>>>> d20acaf57534ffbffd61fc14f25e790c86673098
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
           >
             Create Event
