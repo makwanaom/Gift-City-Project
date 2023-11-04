@@ -208,6 +208,7 @@ const Events = () => {
       </div>
 
       {selectedEvent && (
+        
         <div className="fixed  inset-0 flex items-center justify-center  z-50 overflow-y-auto">
           <div className="modal-background absolute  bg-black opacity-40 inset-0 "></div>
           <div className="modal-container absolute bg-white w-4/5 md:w-1/2 mx-auto rounded-md shadow-lg ">
@@ -247,11 +248,13 @@ const Events = () => {
         </div>
       )}
 {createFormVisible && (
+  
   <div className="fixed inset-0 flex items-center justify-center z-50">
     <div className="modal-background absolute bg-black opacity-40 inset-0"></div>
     <div className="modal-container absolute bg-white w-4/5 md:w-1/2 mx-auto rounded-md shadow-lg">
       <form onSubmit={handleFormSubmit} >
       <div className="modal-content p-6">
+        <form onSubmit={handleCreateEvent}>
         <h2 className="text-3xl font-semibold mb-4">Create Event</h2>
         <input
           type="text"
@@ -306,12 +309,18 @@ const Events = () => {
             Close
           </button>
           <button
+<<<<<<< HEAD
             onClick={handleFormSubmit}
+=======
+            type="submit"
+>>>>>>> d20acaf57534ffbffd61fc14f25e790c86673098
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
           >
             Create Event
           </button>
+          
         </div>
+        </form>
       </div>
       </form>
     </div>

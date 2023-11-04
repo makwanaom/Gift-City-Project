@@ -13,7 +13,7 @@ const Navbar = () => {
     { label: "About Us", value: "/AboutUs" },
     { label: "Events", value: "/#Events" },
     { label: "Community", value: "/Community" },
-    { label: "Maps", value: "/#" },
+    { label: "Maps", value: "/#Map" },
   ];
   const {data:session}=useSession();
 
