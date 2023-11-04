@@ -25,54 +25,58 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSignUp) {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.")
+         return;
+    }
+   else  if (isSignUp) {
       if (!username ||!email || !password) {
-        setError("All fields are necessary.");
+        alert("All fields are necessary.");
         return;
       }
-    } else if (!username || !email || !password) {
-      setError("All fields are necessary.");
-    }
-
-    try {
-      const resUserExists = await fetch("api/existUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const { user } = await resUserExists.json();
-
-      if (user) {
-        setError("User already exists.");
-        return;
+    } 
+      try {
+        const resUserExists = await fetch("api/existUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+  
+        const { user } = await resUserExists.json();
+  
+        if (user) {
+          alert("User already exists.");
+          return;
+        }
+  
+        const res = await fetch("api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            password,
+            confirmPassword,
+          }),
+        });
+  
+        if (res.ok) {
+          const form = e.target;
+          form.reset();
+          router.push("/");
+        } else {
+          console.log("User registration failed.");
+        }
+      } catch (error) {
+        console.log("Error during registration: ", error);
       }
+    
 
-      const res = await fetch("api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-          confirmPassword,
-        }),
-      });
-
-      if (res.ok) {
-        const form = e.target;
-        form.reset();
-        router.push("/");
-      } else {
-        console.log("User registration failed.");
-      }
-    } catch (error) {
-      console.log("Error during registration: ", error);
-    }
+   
   };
   return (
     <div>
@@ -175,11 +179,7 @@ const SignUp = () => {
                   />
                 </div>
               </div>
-                    {setError?<div>
-                      <span>
-                        {setError}
-                      </span>
-                    </div>:<></>}
+                    
              
 
               <div>
