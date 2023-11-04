@@ -4,7 +4,15 @@ import React, { useState } from "react";
 
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
-
+  const [createFormVisible, setCreateFormVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    location: "",
+    date: "",
+    price: "",
+    description: "",
+    image: null, // To store the selected image file
+  });
   const data = [
     {
       id: 1,
@@ -67,11 +75,72 @@ const Events = () => {
     setSelectedEvent(event);
 
   };
+ const handleCreateEventClick = () => {
+    setCreateFormVisible(true);
+  };
 
+  const handleFormChange = (e) => {
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      // Handle file input separately
+      setFormData({ ...formData, image: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const handleCreateEvent = () => {
+    // Handle event creation here
+    const newEvent = {
+      id: data.length + 1,
+      title: formData.title,
+      location: formData.location,
+      date: formData.date,
+      price: formData.price,
+      img: URL.createObjectURL(formData.image), // Display uploaded image
+      description: formData.description,
+    };
+
+    data.push(newEvent);
+
+    // Reset form and close it
+    setFormData({
+      title: "",
+      location: "",
+      date: "",
+      price: "",
+      description: "",
+      image: null,
+    });
+    setCreateFormVisible(false);
+  };
+
+  
+  const handleCloseForm = () => {
+    // Reset form and close it
+    setFormData({
+      title: "",
+      location: "",
+      date: "",
+      price: "",
+      description: "",
+      image: null,
+    });
+    setCreateFormVisible(false);
+  };
   return (
     <div id="Events">
+      <div className="flex gap-x-3 ">
       <div className="text-2xl font-medium py-4 underline">Events</div>
-
+      <div className="ml-auto  m-6">
+      <button
+            onClick={handleCreateEventClick}
+            className="bg-blue-500 text-white p-2 rounded-md hover:bg-black "
+          >
+            + Create Event
+          </button>
+      </div>
+      </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-4">
         {data.map((event) => (
           <div
@@ -134,6 +203,76 @@ const Events = () => {
           </div>
         </div>
       )}
+{createFormVisible && (
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="modal-background absolute bg-black opacity-40 inset-0"></div>
+    <div className="modal-container absolute bg-white w-4/5 md:w-1/2 mx-auto rounded-md shadow-lg">
+      <div className="modal-content p-6">
+        <h2 className="text-3xl font-semibold mb-4">Create Event</h2>
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          placeholder="Title"
+          onChange={handleFormChange}
+          className="w-full px-3 py-2 border rounded-md"
+        />
+        <input
+          type="text"
+          name="location"
+          value={formData.location}
+          placeholder="Location"
+          onChange={handleFormChange}
+          className="w-full px-3 py-2 border rounded-md"
+        />
+        <input
+          type="text"
+          name="date"
+          value={formData.date}
+          placeholder="Date"
+          onChange={handleFormChange}
+          className="w-full px-3 py-2 border rounded-md"
+        />
+        <input
+          type="text"
+          name="price"
+          value={formData.price}
+          placeholder="Price"
+          onChange={handleFormChange}
+          className="w-full px-3 py-2 border rounded-md"
+        />
+        <textarea
+          name="description"
+          value={formData.description}
+          placeholder="Description"
+          onChange={handleFormChange}
+          className="w-full px-3 py-2 border rounded-md"
+        />
+        <input
+          type="file"
+          name="image"
+          onChange={handleFormChange}
+          className="w-full"
+        />
+        <div className="mt-4 flex justify-end">
+          <button
+            onClick={handleCloseForm}
+            className="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500 mr-2"
+          >
+            Close
+          </button>
+          <button
+            onClick={handleCreateEvent}
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+          >
+            Create Event
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+      
     </div>
   );
 };
