@@ -114,6 +114,7 @@ const Events = () => {
     });
   };
 
+
   // Create Event API function
   // const createEventAPI = async (newEvent) => {
   //   console.log("dasta is ",newEvent);

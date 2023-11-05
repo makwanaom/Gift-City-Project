@@ -1,33 +1,47 @@
-    'use client'
-    import { useEffect, useState } from 'react';
+import React from "react";
 
-function UserProfile() {
-  const [user, setUser] = useState(null);
-  console.log(user)
-
-  useEffect(() => {
-    const email = 'hardikbhammar@gmail.com';  
-        
-    // Replace with the desired email
-    fetch(`/api/user?email=${email}`) // Pass email as a query parameter
-      .then((response) => response.json())
-      .then((data) => setUser(data))
-      .catch((error) => console.error(error));
-  }, []);
-
+const UserProfile = () => {
   return (
-    <div>
-      {user ? (
-        <div>
-          {/* <p>Name: {user.username}</p> */}
-          <p>Email: {user.email}</p>
-          {/* Display other user data as needed */}
+    <div className="bg-gray-100 h-screen flex flex-col items-center">
+      <div className="bg-gray-500 h-40 w-full"></div>
+      <div className="mt-[-8rem] relative">
+        <img
+          height={200}
+          width={200}
+          src="data:image/jpeg;base64,/your-image-data-here"
+          className="border rounded-full"
+          alt="User Profile"
+        />
+      </div>
+      <div className="bg-white flex flex-col items-center py-10 w-full shadow-lg mt-4">
+        <div className="flex items-center flex-col mt-9">
+          <div>
+            <span className="text-xl font-bold">Charles Patterson</span>
+          </div>
+          <p>
+            Fool for tips, memes, and freebies design. Co-founder of fhaesifakesnas.com. Lorem ipsum description.
+          </p>
+          <div className="flex items-center gap-1">
+            <p>@denliaeukqw</p>
+            <p>Joined Jun 2022</p>
+            <p>Goalble</p>
+          </div>
         </div>
-      ) : (
-        <p>User not found</p>
-      )}
+      </div>
+      <div className="bg-white flex flex-col items-center relative py-10 w-full shadow-lg mt-4">
+        <h2 className="text-xl font-semibold mb-4">Followers</h2>
+        {/* Add your followers section content here */}
+      </div>
+      <div className="bg-white flex flex-col items-center relative py-10 w-full shadow-lg mt-4">
+        <h2 className="text-xl font-semibold mb-4">Likes</h2>
+        {/* Add your likes section content here */}
+      </div>
+      <div className="bg-white flex flex-col items-center relative py-10 w-full shadow-lg mt-4">
+        <h2 className="text-xl font-semibold mb-4">User Badges</h2>
+        {/* Add your user badges section content here */}
+      </div>
     </div>
   );
-}
+};
 
 export default UserProfile;

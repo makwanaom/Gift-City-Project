@@ -49,6 +49,7 @@ export default function UserInfo() {
           </button>
         )}
       </div>
+      <button onClick={router.push('/Profile')} >Profile</button>
     </div>
   );
 }
