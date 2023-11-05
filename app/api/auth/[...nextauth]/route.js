@@ -58,7 +58,6 @@ export const authOptions = {
       //   const user = await User.find({
       //     email: credentials.email,
       //   })
-         
 
       //   if (!user || !user[0]?.password) {
       //     throw new Error("Invalid Credentials");
@@ -71,9 +70,9 @@ export const authOptions = {
       //     console.log()
       //     throw new Error("Invalid Credentials");
       //   }
-        
+
       //   console.log('user is a :',user)
- 
+
       //   return user;
       // },
       async authorize(credentials) {
@@ -81,39 +80,46 @@ export const authOptions = {
           if (!credentials?.email || !credentials?.password) {
             throw new Error("Invalid Credentials");
           }
-      
+
           await MongodbConnection();
-      
-          const user = await User.findOne({ email: credentials.email });
-      
+
+          const user = await User.findOne({ email: credentials.email }).select(
+            "+password"
+          );
+
+
           if (!user) {
-            throw new Error("User not found"),
-            console.log("hey there this is error");
+            throw (
+              (new Error("User not found"),
+              console.log("hey there this is error"))
+            );
           }
-      
-          const isCorrectPassword = await bcrypt.compare(credentials.password, user.password);
-      
+
+          const isCorrectPassword = await bcrypt.compare(
+            credentials.password,
+            user.password
+          );
+
           if (!isCorrectPassword) {
             throw new Error("Incorrect password");
           }
-      
-          console.log('User found:', user);
-          
+
+          // console.log("User found:", user);
+
           return user;
         } catch (error) {
-          console.error('Authorization error:', error);
+          console.error("Authorization error:", error);
           return null; // Return null on error
         }
-      }
+      },
     }),
   ],
-   
+
   session: {
     strategy: "jwt",
 
- // ** 30 days
+    // ** 30 days
   },
-  
 
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
