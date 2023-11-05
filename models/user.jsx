@@ -2,9 +2,9 @@ import mongoose, { Schema, models } from "mongoose";
 
 const userSchema = new Schema(
   {
-    username:{
-      type:String,
-      require:true,
+    username: {
+      type: String,
+      require: true,
     },
     email: {
       type: String,
@@ -14,10 +14,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       require: true,
-    },
-    confirmPassword: {
-      type: String,
-      require: true,
+      select: false,
     },
   },
   { timestamps: true }

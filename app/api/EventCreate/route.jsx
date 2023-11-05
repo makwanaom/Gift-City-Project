@@ -5,13 +5,24 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     await MongodbConnection();
-    const { formData } = await req.json();
-    await Event.create({ formData });
-   
+    const  formData = await req.json();
+    await Event.create(formData );
+    console.log(formData)
 
-    console.log(" form data is :",formData);
 
-    return NextResponse.json({ formData });
+    return NextResponse.json(formData );
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function GET(req,res) {
+  try {
+    await MongodbConnection();
+    const data = await Event.find();
+
+  
+
+    return NextResponse.json(data );
   } catch (error) {
     console.log(error);
   }

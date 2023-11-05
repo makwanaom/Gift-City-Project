@@ -87,8 +87,8 @@ const Navbar = () => {
       </div>
       <div className="ml-4  font-medium text-xl px-6 cursor-pointer text-black">
         {session ? (
-          <button onClick={toggleProfileMenu}>
-            <FaUser />
+          <button onClick={toggleProfileMenu} className="border p-4 rounded-full ">
+            <FaUser className="" />
           </button>
         ) : (
           <button onClick={toggleLoginStatus}>
@@ -98,7 +98,7 @@ const Navbar = () => {
         {isProfileMenuOpen && (
           <ul className="bg-white p-2 border-b-2 border-gray-600 absolute z-10 right-0 mt-2 ">
             <UserInfo/>
-            
+{/*             
              <li>
               <Link href="/Profile">Profile</Link>
             </li>
@@ -106,7 +106,7 @@ const Navbar = () => {
               <Link onClick={toggleLoginStatus} href="/">
                 Logout
               </Link>
-            </li> 
+            </li>  */}
           </ul>
         )}
       </div>
